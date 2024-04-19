@@ -9,6 +9,7 @@ const config = {
   cloudIdentifier: 'gcp-au',
   headers: {
     csp: {
+      'connect-src': ['self'],
       'frame-src': ['self', 'https://app.csvbox.io/'],
     },
   },
