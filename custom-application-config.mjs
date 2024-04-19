@@ -12,8 +12,8 @@ const config = {
       initialProjectKey: 'ct-custom-app-demo',
     },
     production: {
-      applicationId: 'TODO',
-      url: 'https://your_app_hostname.com',
+      applicationId: '${env:APPLICATION_ID}',
+      url: '${env:APP_URL}',
     },
   },
   oAuthScopes: {
