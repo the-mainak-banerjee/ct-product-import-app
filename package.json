@@ -57,6 +57,7 @@
     "@commercetools-uikit/text-field": "^19.0.0",
     "@commercetools-uikit/text-input": "^19.0.0",
     "@commercetools/sync-actions": "^5.14.0",
+    "@csvbox/react": "^1.1.9",
     "@emotion/react": "^11.11.4",
     "@formatjs/cli": "6.2.7",
     "@jest/types": "29.6.3",

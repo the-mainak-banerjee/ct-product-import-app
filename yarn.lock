@@ -2507,6 +2507,11 @@
     node-fetch "^2.6.1"
     uuid "9.0.0"
 
+"@csvbox/react@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@csvbox/react/-/react-1.1.9.tgz#ab509251738da0dc46128b937fe10135679a9b5f"
+  integrity sha512-PTj41rA5mYSFjU7JEQetVvmLI21BEVMT0zjNTCdxECwehVJeWQIcpPfmPU8OCyCIN8ADTaRk42B11M/TQr/AZg==
+
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"

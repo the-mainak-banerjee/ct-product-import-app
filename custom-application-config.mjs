@@ -7,6 +7,11 @@ const config = {
   name: 'Product Import',
   entryPointUriPath,
   cloudIdentifier: 'gcp-au',
+  headers: {
+    csp: {
+      'frame-src': ['self', 'https://app.csvbox.io/'],
+    },
+  },
   env: {
     development: {
       initialProjectKey: 'ct-custom-app-demo',
