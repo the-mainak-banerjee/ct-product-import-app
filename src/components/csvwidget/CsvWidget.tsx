@@ -1,10 +1,10 @@
-import React from 'react';
 import { CSVBoxButton } from '@csvbox/react';
+import styles from './CsvWidget.module.css';
 
 export const CsvWidget = () => {
   return (
     <CSVBoxButton
-      licenseKey="${env:LICENSE_KEY}"
+      licenseKey="qDz4ISm9m8TMZ6HL3I4YzircVGS5A4"
       user={{
         user_id: 'default123',
       }}
@@ -20,8 +20,8 @@ export const CsvWidget = () => {
       }}
       render={(launch, isLoading) => {
         return (
-          <button disabled={isLoading} onClick={launch}>
-            Upload file
+          <button onClick={launch} className={styles.btn}>
+            {isLoading ? 'loading..' : 'Upload file'}
           </button>
         );
       }}
