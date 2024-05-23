@@ -1,14 +1,16 @@
-import type { ReactNode } from 'react';
+import React, { useState, type ReactNode } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
 import { CsvWidget } from './components/csvwidget/CsvWidget';
+import '@coreui/coreui/dist/css/coreui.min.css'
+import CreateImportJob from './components/CreateImportJob';
 
 type ApplicationRoutesProps = {
   children?: ReactNode;
 };
 const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
   const match = useRouteMatch();
-
+  const [showCSVBox, setShowCSVBox] = useState(false)
   /**
    * When using routes, there is a good chance that you might want to
    * restrict the access to a certain route based on the user permissions.
@@ -24,7 +26,8 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
     <Spacings.Inset scale="l">
       <Switch>
         <Route>
-          <CsvWidget />
+          {showCSVBox && <CsvWidget />}
+          <CreateImportJob setShowCSVBox={setShowCSVBox} />
         </Route>
       </Switch>
     </Spacings.Inset>

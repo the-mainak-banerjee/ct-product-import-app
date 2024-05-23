@@ -1,16 +1,16 @@
 import { CSVBoxButton } from '@csvbox/react';
-import styles from './CsvWidget.module.css';
 
 export const CsvWidget = () => {
   return (
     <CSVBoxButton
-      licenseKey="qDz4ISm9m8TMZ6HL3I4YzircVGS5A4"
+      licenseKey="yThnXOZPn7DONeRl6azlmmIZNdC5tI"
       user={{
         user_id: 'default123',
       }}
       onImport={(result, data) => {
         if (result) {
           console.log('success');
+          console.log({result, data})
           console.log(data.row_success + ' rows uploaded');
           //custom code
         } else {
@@ -20,11 +20,17 @@ export const CsvWidget = () => {
       }}
       render={(launch, isLoading) => {
         return (
-          <button onClick={launch} className={styles.btn}>
-            {isLoading ? 'loading..' : 'Upload file'}
-          </button>
+          !isLoading && launch()
         );
       }}
+      dynamicColumns={[
+        {
+          "column_name" : "qualification"        
+        },
+        {
+           "column_name": "experience"         
+       }
+]}
     >
       Import
     </CSVBoxButton>

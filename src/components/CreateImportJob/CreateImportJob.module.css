@@ -1,0 +1,21 @@
+.wrapper {
+    padding-left: 24px;
+    padding-right: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.createImportJob{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: 500;
+}
+
+.buttons {
+     display: flex;
+     gap: 1rem;
+}

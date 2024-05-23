@@ -2507,10 +2507,24 @@
     node-fetch "^2.6.1"
     uuid "9.0.0"
 
-"@csvbox/react@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@csvbox/react/-/react-1.1.9.tgz#ab509251738da0dc46128b937fe10135679a9b5f"
-  integrity sha512-PTj41rA5mYSFjU7JEQetVvmLI21BEVMT0zjNTCdxECwehVJeWQIcpPfmPU8OCyCIN8ADTaRk42B11M/TQr/AZg==
+"@coreui/coreui@^5.0.0", "@coreui/coreui@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-5.0.1.tgz#9b340beb5a7d87431f62a8d0994e6b62ff19ec4f"
+  integrity sha512-f3zCHIg69MEZkqaziv/rtq0p/43N4VGhho5BfNHy6YouR/ya/bXSs2j3mMBPqB1kmpDUEPC8j4DaWxNC1UcXug==
+
+"@coreui/react@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@coreui/react/-/react-5.0.0.tgz#23f65ca945ebcf501872ee6482ecea116d6e4f1e"
+  integrity sha512-LnYloIOq3T1mgZNEEoni1yScsg3ad2r/q1tUQt0+HabyiYXV4OVHWXv0Y7sneUWNzv5yx+3BlJldGHVXDRuImQ==
+  dependencies:
+    "@coreui/coreui" "^5.0.0"
+    "@popperjs/core" "^2.11.8"
+    prop-types "^15.8.1"
+
+"@csvbox/react@^1.1.10":
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@csvbox/react/-/react-1.1.10.tgz#91bc350c34caefb5ccaf8d043410bf193b5d0067"
+  integrity sha512-n1TEzkAr9gRwQxlxaGuXL0bLBJOwkbxcOmM1vzlmeDxcnECcZMvb6l+D/QCIeKeMGpJzhv4wYpZgeE/1t8tC9g==
 
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
@@ -3670,6 +3684,11 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
   integrity sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==
 
+"@popperjs/core@^2.11.8":
+  version "2.11.8"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
+  integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
+
 "@react-hook/latest@1.0.3", "@react-hook/latest@^1.0.2":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@react-hook/latest/-/latest-1.0.3.tgz#c2d1d0b0af8b69ec6e2b3a2412ba0768ac82db80"
@@ -4025,6 +4044,18 @@
   integrity sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==
   dependencies:
     defer-to-connect "^2.0.1"
+
+"@tanstack/react-table@^8.10.0":
+  version "8.17.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.17.3.tgz#4e10b4cf5355a40d6d72a83d3f4b3ecd32f56bf4"
+  integrity sha512-5gwg5SvPD3lNAXPuJJz1fOCEZYk9/GeBFH3w/hCgnfyszOIzwkwgp5I7Q4MJtn0WECp84b5STQUDdmvGi8m3nA==
+  dependencies:
+    "@tanstack/table-core" "8.17.3"
+
+"@tanstack/table-core@8.17.3":
+  version "8.17.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.17.3.tgz#d7a9830abb29cd369b52b2a7159dc0360af646fd"
+  integrity sha512-mPBodDGVL+fl6d90wUREepHa/7lhsghg2A3vFpakEhrhtbIlgNAZiMr7ccTgak5qbHqF14Fwy+W1yFWQt+WmYQ==
 
 "@testing-library/dom@^8.0.0", "@testing-library/dom@^8.11.1":
   version "8.20.1"
