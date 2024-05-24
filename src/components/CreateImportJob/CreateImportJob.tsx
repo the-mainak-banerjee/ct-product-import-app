@@ -10,6 +10,7 @@ interface IProps {
 
 const CreateImportJob = ({ setShowCSVBox }: IProps) => {
   const [visible, setVisible] = useState(false);
+  const [tableType, setTableType] = useState('products');
 
   return (
     <>
@@ -26,11 +27,17 @@ const CreateImportJob = ({ setShowCSVBox }: IProps) => {
           </CButton>
         </section>
         <section className={styles.buttons}>
-          <CButton color="primary">Products Import Report</CButton>
-          <CButton color="primary">Variants Import Report</CButton>
-          <CButton color="primary">Pricing Import Report</CButton>
+          <CButton color="primary" onClick={() => setTableType('products')}>
+            Products Import Report
+          </CButton>
+          <CButton color="primary" onClick={() => setTableType('variants')}>
+            Variants Import Report
+          </CButton>
+          <CButton color="primary" onClick={() => setTableType('pricing')}>
+            Pricing Import Report
+          </CButton>
         </section>
-        <TableReports />
+        <TableReports tableType={tableType} />
       </div>
       <CreateImportJobModal
         visible={visible}

@@ -2,7 +2,11 @@
 import React from 'react';
 import styles from './TableReports.module.css';
 import classNames from 'classnames';
-import { tableMockData } from './TableReports.mock';
+import {
+  pricingTableMockData,
+  tableMockData,
+  variantsTableMockData,
+} from './TableReports.mock';
 import {
   getCoreRowModel,
   useReactTable,
@@ -23,7 +27,7 @@ interface IProps {
   };
 }
 
-const TableReports = () => {
+const TableReports = ({ tableType }: { tableType: string }) => {
   const ActionItems = () => {
     return (
       <div className={styles.reTriggerJobRadio}>
@@ -72,11 +76,26 @@ const TableReports = () => {
       cell: ({ row }: IProps) => generateActionItemsColumn(),
     },
   ];
+
+  const selectTableView = (tableType: string) => {
+    switch (tableType) {
+      case 'products':
+        return tableMockData;
+      case 'variants':
+        return variantsTableMockData;
+      case 'pricing':
+        return pricingTableMockData;
+      default:
+        return tableMockData;
+    }
+  };
+
   const tableInstance = useReactTable({
     columns: columns,
-    data: tableMockData,
+    data: selectTableView(tableType),
     getCoreRowModel: getCoreRowModel(),
   });
+
   return (
     <table className={classNames(styles.table)}>
       <thead>
@@ -105,7 +124,7 @@ const TableReports = () => {
             <tr key={rowEl.id}>
               {rowEl.getVisibleCells().map((cellEl: any) => {
                 return (
-                  <td 
+                  <td
                     key={cellEl.id}
                     style={{
                       width:
