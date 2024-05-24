@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './TableReports.module.css';
 import classNames from 'classnames';
 import {
@@ -12,7 +12,8 @@ import {
   useReactTable,
   flexRender,
 } from '@tanstack/react-table';
-import { CFormCheck } from '@coreui/react';
+import { CFormCheck, CFormSelect } from '@coreui/react';
+import Pagination from '../Pagination/Pagination';
 
 interface IProps {
   row: {
@@ -28,6 +29,8 @@ interface IProps {
 }
 
 const TableReports = ({ tableType }: { tableType: string }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+
   const ActionItems = () => {
     return (
       <div className={styles.reTriggerJobRadio}>
@@ -62,7 +65,17 @@ const TableReports = ({ tableType }: { tableType: string }) => {
     {
       header: 'Status',
       cell: ({ row }: IProps) => {
-        return <p>{row.original?.status}</p>;
+        return (
+          <CFormSelect
+            aria-label="Default select example"
+            options={[
+              { label: '', value: '' },
+              { label: 'Success', value: 'success' },
+              { label: 'Failed', value: '' },
+            ]}
+            className={styles.statusSelectBox}
+          />
+        );
       },
     },
     {
@@ -96,55 +109,67 @@ const TableReports = ({ tableType }: { tableType: string }) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const PER_PAGE = 10;
+
+  const pageCount = Math.ceil(selectTableView(tableType).length / PER_PAGE);
+
+  const offset = currentPage * PER_PAGE;
+
   return (
-    <table className={classNames(styles.table)}>
-      <thead>
-        {tableInstance.getHeaderGroups().map((headerEl) => {
-          return (
-            <tr key={headerEl.id}>
-              {headerEl.headers.map((columnEl) => {
-                return (
-                  <th key={columnEl.id} colSpan={columnEl.colSpan}>
-                    {columnEl.isPlaceholder
-                      ? null
-                      : flexRender(
-                          columnEl.column.columnDef.header,
-                          columnEl.getContext()
+    <>
+      <table className={classNames(styles.table)}>
+        <thead>
+          {tableInstance.getHeaderGroups().map((headerEl) => {
+            return (
+              <tr key={headerEl.id}>
+                {headerEl.headers.map((columnEl) => {
+                  return (
+                    <th key={columnEl.id} colSpan={columnEl.colSpan}>
+                      {columnEl.isPlaceholder
+                        ? null
+                        : flexRender(
+                            columnEl.column.columnDef.header,
+                            columnEl.getContext()
+                          )}
+                    </th>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </thead>
+        <tbody>
+          {tableInstance
+            .getRowModel()
+            .rows.slice(offset, offset + PER_PAGE)
+            .map((rowEl) => {
+              return (
+                <tr key={rowEl.id}>
+                  {rowEl.getVisibleCells().map((cellEl: any) => {
+                    return (
+                      <td
+                        key={cellEl.id}
+                        style={{
+                          width:
+                            cellEl.column.getSize() !== 150
+                              ? cellEl.column.getSize()
+                              : null,
+                        }}
+                      >
+                        {flexRender(
+                          cellEl.column.columnDef.cell,
+                          cellEl.getContext()
                         )}
-                  </th>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </thead>
-      <tbody>
-        {tableInstance.getRowModel().rows.map((rowEl) => {
-          return (
-            <tr key={rowEl.id}>
-              {rowEl.getVisibleCells().map((cellEl: any) => {
-                return (
-                  <td
-                    key={cellEl.id}
-                    style={{
-                      width:
-                        cellEl.column.getSize() !== 150
-                          ? cellEl.column.getSize()
-                          : null,
-                    }}
-                  >
-                    {flexRender(
-                      cellEl.column.columnDef.cell,
-                      cellEl.getContext()
-                    )}
-                  </td>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+      <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+    </>
   );
 };
 
