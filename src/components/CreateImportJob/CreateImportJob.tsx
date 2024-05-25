@@ -1,4 +1,4 @@
-import { CButton } from '@coreui/react';
+import { CButton, CFormSelect } from '@coreui/react';
 import styles from './CreateImportJob.module.css';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import CreateImportJobModal from '../CreateImportJobModal';
@@ -11,6 +11,7 @@ interface IProps {
 const CreateImportJob = ({ setShowCSVBox }: IProps) => {
   const [visible, setVisible] = useState(false);
   const [tableType, setTableType] = useState('products');
+  const [statusText, setStatusText] = useState('');
 
   return (
     <>
@@ -33,11 +34,20 @@ const CreateImportJob = ({ setShowCSVBox }: IProps) => {
           <CButton color="primary" onClick={() => setTableType('variants')}>
             Variants Import Report
           </CButton>
-          <CButton color="primary" onClick={() => setTableType('pricing')}>
-            Pricing Import Report
-          </CButton>
+          <CFormSelect
+            aria-label="Default select example"
+            options={[
+              { label: '', value: '' },
+              { label: 'Success', value: 'Success' },
+              { label: 'Failed', value: 'Failed' },
+            ]}
+            className={styles.statusSelectBox}
+            onChange={(e) => {
+              setStatusText(e.target.value);
+            }}
+          />
         </section>
-        <TableReports tableType={tableType} />
+        <TableReports tableType={tableType} statusText={statusText} />
       </div>
       <CreateImportJobModal
         visible={visible}

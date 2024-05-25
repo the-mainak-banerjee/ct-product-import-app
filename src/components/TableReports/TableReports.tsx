@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import styles from './TableReports.module.css';
 import classNames from 'classnames';
 import {
-  pricingTableMockData,
-  tableMockData,
+  productsTableMockData,
   variantsTableMockData,
 } from './TableReports.mock';
 import {
@@ -28,7 +27,13 @@ interface IProps {
   };
 }
 
-const TableReports = ({ tableType }: { tableType: string }) => {
+const TableReports = ({
+  tableType,
+  statusText,
+}: {
+  tableType: string;
+  statusText: string;
+}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const ActionItems = () => {
@@ -65,17 +70,7 @@ const TableReports = ({ tableType }: { tableType: string }) => {
     {
       header: 'Status',
       cell: ({ row }: IProps) => {
-        return (
-          <CFormSelect
-            aria-label="Default select example"
-            options={[
-              { label: '', value: '' },
-              { label: 'Success', value: 'success' },
-              { label: 'Failed', value: '' },
-            ]}
-            className={styles.statusSelectBox}
-          />
-        );
+        return <p>{statusText}</p>;
       },
     },
     {
@@ -93,19 +88,21 @@ const TableReports = ({ tableType }: { tableType: string }) => {
   const selectTableView = (tableType: string) => {
     switch (tableType) {
       case 'products':
-        return tableMockData;
+        return productsTableMockData;
       case 'variants':
         return variantsTableMockData;
-      case 'pricing':
-        return pricingTableMockData;
       default:
-        return tableMockData;
+        return productsTableMockData;
     }
   };
 
+  const tableData = selectTableView(tableType)?.filter((data) => {
+    return data.status === statusText 
+  })
+
   const tableInstance = useReactTable({
     columns: columns,
-    data: selectTableView(tableType),
+    data: tableData?.length > 0 ? tableData : selectTableView(tableType),
     getCoreRowModel: getCoreRowModel(),
   });
 

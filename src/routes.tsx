@@ -1,5 +1,5 @@
 import React, { useState, type ReactNode } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Spacings from '@commercetools-uikit/spacings';
 import { CsvWidget } from './components/csvwidget/CsvWidget';
 import '@coreui/coreui/dist/css/coreui.min.css'
@@ -9,7 +9,6 @@ type ApplicationRoutesProps = {
   children?: ReactNode;
 };
 const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
-  const match = useRouteMatch();
   const [showCSVBox, setShowCSVBox] = useState(false)
   /**
    * When using routes, there is a good chance that you might want to
