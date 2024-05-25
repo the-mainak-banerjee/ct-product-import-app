@@ -4,7 +4,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 1',
     startTime: '01:00',
     endTime: '02:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -12,7 +12,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 2',
     startTime: '03:00',
     endTime: '04:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -20,7 +20,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 3',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -28,7 +28,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 4',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -36,7 +36,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 5',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -44,7 +44,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 6',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -52,7 +52,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 7',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -60,7 +60,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 8',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -68,7 +68,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 9',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -76,7 +76,7 @@ export const variantsTableMockData = [
     name: 'Variant Job 10',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -84,109 +84,18 @@ export const variantsTableMockData = [
     name: 'Variant Job 11',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
 ];
 
-export const pricingTableMockData = [
-  {
-    id: '1',
-    name: 'Pricing Job 1',
-    startTime: '01:00',
-    endTime: '02:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '2',
-    name: 'Pricing Job 2',
-    startTime: '03:00',
-    endTime: '04:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '3',
-    name: 'Pricing Job 3',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '4',
-    name: 'Pricing Job 4',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '5',
-    name: 'Pricing Job 5',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '6',
-    name: 'Pricing Job 6',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '7',
-    name: 'Pricing Job 7',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '8',
-    name: 'Pricing Job 8',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '9',
-    name: 'Pricing Job 9',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '10',
-    name: 'Pricing Job 10',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-  {
-    id: '11',
-    name: 'Pricing Job 11',
-    startTime: '05:00',
-    endTime: '06:00',
-    status: 'In progress',
-    viewPayload: 'None',
-  },
-];
-
-export const tableMockData = [
+export const productsTableMockData = [
   {
     id: '1',
     name: 'Job 1',
     startTime: '01:00',
     endTime: '02:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -194,7 +103,7 @@ export const tableMockData = [
     name: 'Job 2',
     startTime: '03:00',
     endTime: '04:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -202,7 +111,7 @@ export const tableMockData = [
     name: 'Job 3',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Success',
     viewPayload: 'None',
   },
   {
@@ -210,7 +119,7 @@ export const tableMockData = [
     name: 'Job 4',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -218,7 +127,7 @@ export const tableMockData = [
     name: 'Job 5',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -226,7 +135,7 @@ export const tableMockData = [
     name: 'Job 6',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -234,7 +143,7 @@ export const tableMockData = [
     name: 'Job 7',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -242,7 +151,7 @@ export const tableMockData = [
     name: 'Job 8',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -250,7 +159,7 @@ export const tableMockData = [
     name: 'Job 9',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -258,7 +167,7 @@ export const tableMockData = [
     name: 'Job 10',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
   {
@@ -266,7 +175,7 @@ export const tableMockData = [
     name: 'Job 11',
     startTime: '05:00',
     endTime: '06:00',
-    status: 'In progress',
+    status: 'Failed',
     viewPayload: 'None',
   },
 ];

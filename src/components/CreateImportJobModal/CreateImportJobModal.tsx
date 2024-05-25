@@ -38,7 +38,6 @@ const CreateImportJobModal = ({
       onClose={() => {
         setVisible(false);
         setSelectBoxValue('');
-        setShowCSVBox(false);
       }}
       aria-labelledby="VerticallyCenteredScrollableExample2"
     >
@@ -67,26 +66,6 @@ const CreateImportJobModal = ({
               setSelectBoxValue(event.target.value);
             }}
           />
-          {selectBoxValue && (
-            <CFormInput
-              type="text"
-              id="Pricing"
-              label="Pricing"
-              aria-describedby="pricing"
-              required
-              className={styles.nameInput}
-            />
-          )}
-          {selectBoxValue && (
-            <CFormInput
-              type="text"
-              id="Inventory"
-              label="Inventory"
-              aria-describedby="inventory"
-              required
-              className={styles.nameInput}
-            />
-          )}
         </CForm>
       </CModalBody>
       <CModalFooter className={styles.modalFooter}>
@@ -103,11 +82,11 @@ const CreateImportJobModal = ({
         <CButton
           color="primary"
           onClick={() => {
-            selectBoxValue.length > 0 && setShowCSVBox(true);
+            setShowCSVBox(true);
             setVisible(false);
           }}
         >
-          Save changes
+          Start Import
         </CButton>
       </CModalFooter>
     </CModal>
