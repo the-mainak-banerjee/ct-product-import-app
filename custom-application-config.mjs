@@ -6,7 +6,7 @@ import { PERMISSIONS, entryPointUriPath } from './src/constants';
 const config = {
   name: 'Navigation App',
   entryPointUriPath,
-  cloudIdentifier: 'gcp-au',
+  cloudIdentifier: 'gcp-eu',
   headers: {
     csp: {
       'connect-src': ['self'],
