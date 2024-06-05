@@ -4,7 +4,7 @@ import { PERMISSIONS, entryPointUriPath } from './src/constants';
  * @type {import('@commercetools-frontend/application-config').ConfigOptionsForCustomApplication}
  */
 const config = {
-  name: 'Product Import',
+  name: 'Navigation App',
   entryPointUriPath,
   cloudIdentifier: 'gcp-au',
   headers: {
@@ -15,7 +15,7 @@ const config = {
   },
   env: {
     development: {
-      initialProjectKey: 'ct-custom-app-demo',
+      initialProjectKey: 'navigation-app',
     },
     production: {
       applicationId: '${env:APPLICATION_ID}',
@@ -32,14 +32,7 @@ const config = {
     labelAllLocales: [],
     permissions: [PERMISSIONS.View],
   },
-  submenuLinks: [
-    {
-      uriPath: 'channels',
-      defaultLabel: 'Channels',
-      labelAllLocales: [],
-      permissions: [PERMISSIONS.View],
-    },
-  ],
+  submenuLinks: [],
 };
 
 export default config;
