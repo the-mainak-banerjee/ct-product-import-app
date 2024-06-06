@@ -1,0 +1,12 @@
+query FetchSearchRedirects($container: String!, $where: String!) {
+  customObjects(
+    container: $container
+    limit: 100
+    where: $where
+  ) {
+    results {
+      key
+      value
+    }
+  }
+}

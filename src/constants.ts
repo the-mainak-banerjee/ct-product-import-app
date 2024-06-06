@@ -4,3 +4,7 @@ import { entryPointUriPathToPermissionKeys } from '@commercetools-frontend/appli
 export const entryPointUriPath = 'navigation-app';
 
 export const PERMISSIONS = entryPointUriPathToPermissionKeys(entryPointUriPath);
+
+export const REDIRECT_CONTAINER = 'Redirect';
+
+export const MAX_QUERY_LIMIT = 500;

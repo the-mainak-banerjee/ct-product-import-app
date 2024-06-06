@@ -1,0 +1,13 @@
+query FetchRedirects($limit: Int!, $offset: Int!, $sort: [String!], $container: String!) {
+  customObjects(limit: $limit, offset: $offset, sort: $sort, container: $container) {
+    total
+    count
+    offset
+    results {
+      id
+      container
+      key
+      value
+    }
+  }
+}

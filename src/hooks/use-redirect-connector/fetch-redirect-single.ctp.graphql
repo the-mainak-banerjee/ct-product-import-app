@@ -1,0 +1,9 @@
+query FetchRedirectSingle($id: String!) {
+  customObject(id: $id) {
+    id
+    container
+    key
+    value 
+    version
+  }
+}
