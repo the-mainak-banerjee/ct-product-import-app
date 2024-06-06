@@ -1,15 +1,17 @@
 import { useState, type ReactNode } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Spacings from '@commercetools-uikit/spacings';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { CsvWidget } from './components/csvwidget/CsvWidget';
 import '@coreui/coreui/dist/css/coreui.min.css';
 import CreateImportJob from './components/CreateImportJob';
+import SideNavigationBar from './components/SideNavigationBar/SideNavigationBar';
 
 type ApplicationRoutesProps = {
   children?: ReactNode;
 };
 const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
+  const match = useRouteMatch();
   const [showCSVBox, setShowCSVBox] = useState(false);
+
   /**
    * When using routes, there is a good chance that you might want to
    * restrict the access to a certain route based on the user permissions.
@@ -22,14 +24,26 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
    */
 
   return (
-    <Spacings.Inset scale="l">
-      <Switch>
-        <Route>
-          {showCSVBox && <CsvWidget />}
-          <CreateImportJob setShowCSVBox={setShowCSVBox} />
-        </Route>
-      </Switch>
-    </Spacings.Inset>
+    <Switch>
+      <Route>
+        <SideNavigationBar>
+          <Route path={`${match.url}/product-import`}>
+            {showCSVBox && <CsvWidget />}
+            <CreateImportJob setShowCSVBox={setShowCSVBox} />
+          </Route>
+          <Route path={`${match.url}/price-import`}>
+            <p>Price import app</p>
+          </Route>
+          <Route path={`${match.url}/redirects`}>
+            <p>Redirects App</p>
+          </Route>
+
+          <Route path={`${match.url}/sync-jobs`}>
+            <p>Sync Jobs app</p>
+          </Route>
+        </SideNavigationBar>
+      </Route>
+    </Switch>
   );
 };
 ApplicationRoutes.displayName = 'ApplicationRoutes';
