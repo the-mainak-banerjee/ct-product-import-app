@@ -72,7 +72,9 @@ const SideNavigationBar = ({ children }: { children: ReactNode }) => {
       <div className={styles.container}>
         <div
           className={`${styles.navigationContainer} ${
-            isNavbarCollapsed ? styles.collapsedNavigationContainer : ''
+            isNavbarCollapsed
+              ? styles.collapsedNavigationContainer
+              : styles.nonCollapsedNavigationContainer
           }`}
         >
           <div className={isNavbarCollapsed ? '' : styles.collapseIcon}>
