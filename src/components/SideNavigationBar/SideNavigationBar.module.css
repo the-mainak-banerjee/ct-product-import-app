@@ -11,7 +11,10 @@
     padding: 8px 16px;
     position: fixed;
     height: 100vh;
-    overflow: auto;
+}
+
+.nonCollapsedNavigationContainer{
+    overflow-y: auto;
 }
 
 .collapsedNavigationContainer {
