@@ -5,6 +5,7 @@ import '@coreui/coreui/dist/css/coreui.min.css';
 import CreateImportJob from './components/CreateImportJob';
 import SideNavigationBar from './components/SideNavigationBar/SideNavigationBar';
 import Redirects from './components/redirects';
+import SyncJob from './components/SyncJob/SyncJob';
 
 type ApplicationRoutesProps = {
   children?: ReactNode;
@@ -40,7 +41,7 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
           </Route>
 
           <Route path={`${match.url}/sync-jobs`}>
-            <p>Sync Jobs app</p>
+            <SyncJob />
           </Route>
         </SideNavigationBar>
       </Route>
