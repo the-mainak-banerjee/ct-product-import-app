@@ -10,6 +10,7 @@ import {
   WorldIcon,
   UserLinearIcon,
   InformationIcon,
+  TerminalIcon,
 } from '@commercetools-uikit/icons';
 export interface INavigationItem {
   title: string;
@@ -48,6 +49,27 @@ export const mockNavigationItems: INavigationItem[] = [
       },
     ],
   },
+  {
+    title: 'AI Scraper',
+    subMenu: [
+      {
+        title: 'Job Runs',
+        href: '/job-runs',
+      },
+      {
+        title: 'Attributes',
+        href: '/attributes',
+      },
+      {
+        title: 'AI Attributes',
+        href: '/ai-attributes',
+      },
+      {
+        title: 'Attribute Groups',
+        href: '/attribute-groups',
+      },
+    ],
+  },
 ];
 const getNavigationIcon = (navItemTitle: string) => {
   switch (navItemTitle) {
@@ -59,6 +81,10 @@ const getNavigationIcon = (navItemTitle: string) => {
 
     case 'Admin':
       return UserLinearIcon;
+
+    case 'AI Scraper':
+      return TerminalIcon;
+
     default:
       return InformationIcon;
   }

@@ -6,6 +6,8 @@ import CreateImportJob from './components/CreateImportJob';
 import SideNavigationBar from './components/SideNavigationBar/SideNavigationBar';
 import Redirects from './components/redirects';
 import SyncJob from './components/SyncJob/SyncJob';
+import JobRuns from './components/AiScraper/JobRuns/JobRuns';
+import ProductAttributes from './components/AiScraper/ProductAttributes/ProductAttributes';
 
 type ApplicationRoutesProps = {
   children?: ReactNode;
@@ -42,6 +44,12 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
 
           <Route path={`${match.url}/sync-jobs`}>
             <SyncJob />
+          </Route>
+          <Route path={`${match.url}/job-runs`}>
+            <JobRuns />
+          </Route>
+          <Route path={`${match.url}/attributes`}>
+            <ProductAttributes />
           </Route>
         </SideNavigationBar>
       </Route>
