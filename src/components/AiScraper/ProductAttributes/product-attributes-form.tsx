@@ -1,9 +1,10 @@
-import type { ReactElement } from 'react';
-import { useFormik, type FormikHelpers } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import TextField from '@commercetools-uikit/text-field';
+import MultilineTextField from '@commercetools-uikit/multiline-text-field';
 import Spacings from '@commercetools-uikit/spacings';
-import type { TFormValues } from '../../../types';
-import validate from './validate';
+import { validate } from './validate';
+import { ReactElement } from 'react';
+import { TFormValues } from '../../../types';
 
 type Formik = ReturnType<typeof useFormik>;
 type FormProps = {
@@ -12,38 +13,39 @@ type FormProps = {
   isDirty: Formik['dirty'];
   isSubmitting: Formik['isSubmitting'];
   submitForm: Formik['handleSubmit'];
-  handleReset: Formik['handleReset'];
+  handleCancel: Formik['handleReset'];
 };
-type TProductAttributesFormProps = {
+type TRedirectFormProps = {
   onSubmit: (
     values: TFormValues,
     formikHelpers: FormikHelpers<TFormValues>
   ) => void | Promise<unknown>;
   initialValues: TFormValues;
-  isReadOnly: boolean;
-  dataLocale: string;
+  isReadOnly?: boolean;
+  dataLocale?: string;
   children: (formProps: FormProps) => JSX.Element;
   isEdit?: boolean;
 };
 
-const ProductAttributesForm = (props: TProductAttributesFormProps) => {
-  const formik = useFormik<TFormValues>({
+const ProductAttributeForm = (props: TRedirectFormProps) => {
+  const formik = useFormik({
+    // Pass initial values from the parent component.
     initialValues: props.initialValues,
+    // Handle form submission in the parent component.
     onSubmit: props.onSubmit,
     validate,
     enableReinitialize: true,
   });
 
+  // Only contains the form elements, no buttons.
   const formElements = (
     <Spacings.Stack scale="l">
       <TextField
         name="attributeName"
         title="Name"
         value={formik.values.attributeName}
-        errors={
-          TextField.toFieldErrors<TFormValues>(formik.errors).attributeName
-        }
-        touched={formik.touched.attributeName}
+        errors={TextField.toFieldErrors(formik.errors).attributeName}
+        // touched={formik.touched.attributeName}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         renderError={(key: string) => {
@@ -56,16 +58,13 @@ const ProductAttributesForm = (props: TProductAttributesFormProps) => {
         }}
         isRequired
         horizontalConstraint={8}
-        placeholder="Attribute Name"
       />
-      <TextField
-        name="from"
+      <MultilineTextField
+        name="attributeDescription"
         title="Description"
-        value={formik.values.description || ''}
-        errors={TextField.toFieldErrors<TFormValues>(formik.errors).description}
-        touched={formik.touched.description}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
+        isRequired
+        value={formik.values.attributeDescription}
+        errors={TextField.toFieldErrors(formik.errors).attributeDescription}
         renderError={(key: string) => {
           switch (key) {
             case 'missing':
@@ -74,9 +73,10 @@ const ProductAttributesForm = (props: TProductAttributesFormProps) => {
               return null;
           }
         }}
-        isRequired
+        // touched={formik.touched.attributeDescription}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         horizontalConstraint={8}
-        placeholder="Attribute Description"
       />
     </Spacings.Stack>
   );
@@ -87,9 +87,8 @@ const ProductAttributesForm = (props: TProductAttributesFormProps) => {
     isDirty: formik.dirty,
     isSubmitting: formik.isSubmitting,
     submitForm: formik.handleSubmit,
-    handleReset: formik.handleReset,
+    handleCancel: formik.handleReset,
   });
 };
-ProductAttributesForm.displayName = 'ProductAttributesForm';
 
-export default ProductAttributesForm;
+export default ProductAttributeForm;

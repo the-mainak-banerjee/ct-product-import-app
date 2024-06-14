@@ -10,8 +10,17 @@ import {
 } from '@tanstack/react-table';
 import Pagination from '../../Pagination/Pagination';
 import { productAttributesMock } from './ProductAttributes.mock';
-import { CButton } from '@coreui/react';
 import { BinLinearIcon, EditIcon } from '@commercetools-uikit/icons';
+import { Switch, useHistory, useRouteMatch } from 'react-router';
+import ProductAttributesDetails from './product-attributes-details';
+import { SuspendedRoute } from '@commercetools-frontend/application-shell';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+
+export interface IProductAttributes {
+  id: number;
+  name: string;
+  description: string;
+}
 
 interface IProps {
   row: {
@@ -25,11 +34,25 @@ interface IProps {
 
 const ProductAttributes = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const match = useRouteMatch();
+  const { push } = useHistory();
+  const [selectedRow, setSelectedRow] = useState<IProductAttributes | null>(
+    null
+  );
 
-  const ActionItems = ({ attributeId }) => {
+  const ActionItems = ({ attributeId }: { attributeId: number }) => {
+    const handleEditItem = () => {
+      const item = productAttributesMock.find(
+        (item) => item.id === attributeId
+      );
+      if (item) {
+        setSelectedRow(item);
+      }
+      push(`${match.url}/edit`);
+    };
     return (
       <div className={productAttributeStyles.actions}>
-        <button>
+        <button onClick={handleEditItem}>
           <EditIcon />
         </button>
         <button>
@@ -39,7 +62,7 @@ const ProductAttributes = () => {
     );
   };
 
-  const generateActionItemsColumn = (id) => {
+  const generateActionItemsColumn = (id: number) => {
     return <ActionItems attributeId={id} />;
   };
 
@@ -82,64 +105,88 @@ const ProductAttributes = () => {
   const offset = currentPage * PER_PAGE;
 
   return (
-    <div>
-      <div className={productAttributeStyles.header}>
-        <h2>Ai Tool Jobs Runs</h2>
-        <CButton color="primary">Create Import Job</CButton>
-      </div>
-      <table className={classNames(styles.table)}>
-        <thead>
-          {tableInstance.getHeaderGroups().map((headerEl) => {
-            return (
-              <tr key={headerEl.id}>
-                {headerEl.headers.map((columnEl) => {
-                  return (
-                    <th key={columnEl.id} colSpan={columnEl.colSpan}>
-                      {columnEl.isPlaceholder
-                        ? null
-                        : flexRender(
-                            columnEl.column.columnDef.header,
-                            columnEl.getContext()
-                          )}
-                    </th>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </thead>
-        <tbody>
-          {tableInstance
-            .getRowModel()
-            .rows.slice(offset, offset + PER_PAGE)
-            .map((rowEl) => {
+    <>
+      <div>
+        <div className={productAttributeStyles.header}>
+          <h2>Ai Tool Jobs Runs</h2>
+          <PrimaryButton
+            label="Create Import Job"
+            onClick={() => push(`${match.url}/create`)}
+          />
+        </div>
+        <table className={classNames(styles.table)}>
+          <thead>
+            {tableInstance.getHeaderGroups().map((headerEl) => {
               return (
-                <tr key={rowEl.id}>
-                  {rowEl.getVisibleCells().map((cellEl: any) => {
+                <tr key={headerEl.id}>
+                  {headerEl.headers.map((columnEl) => {
                     return (
-                      <td
-                        key={cellEl.id}
-                        style={{
-                          width:
-                            cellEl.column.getSize() !== 150
-                              ? cellEl.column.getSize()
-                              : null,
-                        }}
-                      >
-                        {flexRender(
-                          cellEl.column.columnDef.cell,
-                          cellEl.getContext()
-                        )}
-                      </td>
+                      <th key={columnEl.id} colSpan={columnEl.colSpan}>
+                        {columnEl.isPlaceholder
+                          ? null
+                          : flexRender(
+                              columnEl.column.columnDef.header,
+                              columnEl.getContext()
+                            )}
+                      </th>
                     );
                   })}
                 </tr>
               );
             })}
-        </tbody>
-      </table>
-      <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
-    </div>
+          </thead>
+          <tbody>
+            {tableInstance
+              .getRowModel()
+              .rows.slice(offset, offset + PER_PAGE)
+              .map((rowEl) => {
+                return (
+                  <tr key={rowEl.id}>
+                    {rowEl.getVisibleCells().map((cellEl: any) => {
+                      return (
+                        <td
+                          key={cellEl.id}
+                          style={{
+                            width:
+                              cellEl.column.getSize() !== 150
+                                ? cellEl.column.getSize()
+                                : null,
+                          }}
+                        >
+                          {flexRender(
+                            cellEl.column.columnDef.cell,
+                            cellEl.getContext()
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+        <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+      </div>
+      <Switch>
+        <SuspendedRoute path={`${match.url}/create`}>
+          <ProductAttributesDetails onClose={() => push(`${match.url}`)} />
+        </SuspendedRoute>
+        <SuspendedRoute path={`${match.url}/edit`}>
+          <ProductAttributesDetails
+            onClose={() => push(`${match.url}`)}
+            isEdit={true}
+            data={{
+              key: `${selectedRow?.id ?? 0}`,
+              value: {
+                name: selectedRow?.name ?? '',
+                description: selectedRow?.description ?? '',
+                id: selectedRow?.id ?? 0,
+              },
+            }}
+          />
+        </SuspendedRoute>
+      </Switch>
+    </>
   );
 };
 

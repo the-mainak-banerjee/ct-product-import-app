@@ -1,30 +1,26 @@
+import LocalizedTextInput from '@commercetools-uikit/localized-text-input';
 import omitEmpty from 'omit-empty-es';
-import type { FormikErrors } from 'formik';
-
-import TextInput from '@commercetools-uikit/text-input';
-
-import type { TFormValues } from '../../../types';
+import { TFormValues } from '../../../types';
+import { FormikErrors } from 'formik';
 
 type TErrors = {
   attributeName: { missing?: boolean };
-  description: { missing?: boolean };
+  attributeDescription: { missing?: boolean };
 };
 
-const validate = (formikValues: TFormValues): FormikErrors<TFormValues> => {
+export const validate = (values: TFormValues): FormikErrors<TFormValues> => {
   const errors: TErrors = {
     attributeName: {},
-    description: {},
+    attributeDescription: {},
   };
 
-  if (TextInput.isEmpty(formikValues.attributeName)) {
-    errors.attributeName.missing = true;
+  if (LocalizedTextInput.isEmpty(values.attributeName)) {
+    errors.attributeName = { missing: true };
   }
 
-  if (TextInput.isEmpty(formikValues.description)) {
-    errors.description.missing = true;
+  if (LocalizedTextInput.isEmpty(values.attributeDescription)) {
+    errors.attributeDescription = { missing: true };
   }
 
   return omitEmpty(errors);
 };
-
-export default validate;
