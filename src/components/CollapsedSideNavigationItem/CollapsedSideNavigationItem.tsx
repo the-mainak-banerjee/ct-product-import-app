@@ -13,7 +13,6 @@ const CollapsedSideNavigationItem = ({
   icon: ReactElement;
 }) => {
   const match = useRouteMatch();
-  console.log('🚀 ~ match:', match);
   const [displayNavItems, setDisplayNavItems] = useState(false);
   return (
     <div

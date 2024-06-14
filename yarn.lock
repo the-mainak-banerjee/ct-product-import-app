@@ -2449,6 +2449,49 @@
     prop-types "15.8.1"
     react-intl "^6.3.2"
 
+"@commercetools-uikit/multiline-text-field@^19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/multiline-text-field/-/multiline-text-field-19.5.0.tgz#c492b3ce2dc60da8051e8d7a17b931d57a4c05f0"
+  integrity sha512-vZWHm5PRvjIZ+lTaT8dF4mb5nqTp3yyYkJQtOJiQyjfNtSOtqTZ1IyFTivK7cc/VkDTuvnENVxRelbfHXQr7MQ==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    "@babel/runtime-corejs3" "^7.20.13"
+    "@commercetools-uikit/constraints" "19.5.0"
+    "@commercetools-uikit/design-system" "19.5.0"
+    "@commercetools-uikit/field-errors" "19.5.0"
+    "@commercetools-uikit/field-label" "19.5.0"
+    "@commercetools-uikit/field-warnings" "19.5.0"
+    "@commercetools-uikit/multiline-text-input" "19.5.0"
+    "@commercetools-uikit/spacings" "19.5.0"
+    "@commercetools-uikit/utils" "19.5.0"
+    "@emotion/react" "^11.10.5"
+    "@emotion/styled" "^11.10.5"
+    prop-types "15.8.1"
+    react-intl "^6.3.2"
+
+"@commercetools-uikit/multiline-text-input@19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/multiline-text-input/-/multiline-text-input-19.5.0.tgz#16597c23a28a4850059fe6474f1b4afcd21a40ec"
+  integrity sha512-1gdOXHy3/jeHKjueiRIOffvtVpSIHxqQ2NRQMF5BYNv4hVsRsfNWfsy1KWDCXybKInPYkVr3Q7vkgjevwza6mA==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    "@babel/runtime-corejs3" "^7.20.13"
+    "@commercetools-uikit/constraints" "19.5.0"
+    "@commercetools-uikit/design-system" "19.5.0"
+    "@commercetools-uikit/flat-button" "19.5.0"
+    "@commercetools-uikit/hooks" "19.5.0"
+    "@commercetools-uikit/icons" "19.5.0"
+    "@commercetools-uikit/input-utils" "19.5.0"
+    "@commercetools-uikit/spacings-inline" "19.5.0"
+    "@commercetools-uikit/spacings-stack" "19.5.0"
+    "@commercetools-uikit/tooltip" "19.5.0"
+    "@commercetools-uikit/utils" "19.5.0"
+    "@emotion/react" "^11.10.5"
+    "@emotion/styled" "^11.10.5"
+    downshift "6.1.12"
+    prop-types "15.8.1"
+    react-textarea-autosize "8.4.0"
+
 "@commercetools-uikit/notifications@^19.0.0":
   version "19.4.0"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/notifications/-/notifications-19.4.0.tgz#8b590fc004b5cb0488e5d6ab8f4c8a9492bedfd4"
@@ -2917,6 +2960,24 @@
     "@commercetools-uikit/design-system" "19.4.0"
     "@commercetools-uikit/hooks" "19.4.0"
     "@commercetools-uikit/utils" "19.4.0"
+    "@emotion/react" "^11.10.5"
+    "@emotion/styled" "^11.10.5"
+    lodash "4.17.21"
+    prop-types "15.8.1"
+    react-is "17.0.2"
+    use-popper "1.1.6"
+
+"@commercetools-uikit/tooltip@19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/tooltip/-/tooltip-19.5.0.tgz#d326713c5f88d5e0e958fc8a544bd849adc52b4b"
+  integrity sha512-VskaB8DAnzuccp1XRpEf2F5E/F4mBkmuU0X7AaMcerO5+ZgXXFhFfnNMCE0igXQWu+Gf6Sc8mv1OOuwj5VJMhA==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    "@babel/runtime-corejs3" "^7.20.13"
+    "@commercetools-uikit/constraints" "19.5.0"
+    "@commercetools-uikit/design-system" "19.5.0"
+    "@commercetools-uikit/hooks" "19.5.0"
+    "@commercetools-uikit/utils" "19.5.0"
     "@emotion/react" "^11.10.5"
     "@emotion/styled" "^11.10.5"
     lodash "4.17.21"
