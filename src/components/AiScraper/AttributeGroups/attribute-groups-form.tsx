@@ -1,6 +1,6 @@
 import { FormikHelpers, useFormik } from 'formik';
 import TextField from '@commercetools-uikit/text-field';
-import MultilineTextField from '@commercetools-uikit/multiline-text-field';
+import SelectField from '@commercetools-uikit/select-field';
 import Spacings from '@commercetools-uikit/spacings';
 import { validate } from './validate';
 import { ReactElement } from 'react';
@@ -15,7 +15,7 @@ type FormProps = {
   submitForm: Formik['handleSubmit'];
   handleCancel: Formik['handleReset'];
 };
-type TProductAttributeFormProps = {
+type TAttributeGroupsFormProps = {
   onSubmit: (
     values: TFormValues,
     formikHelpers: FormikHelpers<TFormValues>
@@ -27,7 +27,7 @@ type TProductAttributeFormProps = {
   isEdit?: boolean;
 };
 
-const ProductAttributeForm = (props: TProductAttributeFormProps) => {
+const AttributeGroupForm = (props: TAttributeGroupsFormProps) => {
   const formik = useFormik({
     // Pass initial values from the parent component.
     initialValues: props.initialValues,
@@ -57,15 +57,25 @@ const ProductAttributeForm = (props: TProductAttributeFormProps) => {
           }
         }}
         isRequired
-        horizontalConstraint={8}
+        horizontalConstraint={16}
       />
-      <MultilineTextField
-        name="attributeDescription"
-        title="Description"
-        isRequired
-        value={formik.values.attributeDescription}
-        errors={TextField.toFieldErrors(formik.errors).attributeDescription}
-        touched={formik.touched.attributeDescription}
+      <SelectField
+        name="attributefields"
+        title="Fields"
+        value={formik.values.attributefields}
+        isMulti={true}
+        options={[
+          { value: 'Test Field 1', label: 'Test Field 1' },
+          { value: 'Test Field 2', label: 'Test Field 2' },
+          { value: 'Test Field 3', label: 'Test Field 3' },
+          { value: 'Test Field 4', label: 'Test Field 4' },
+          { value: 'Test Field 5', label: 'Test Field 5' },
+          { value: 'Test Field 6', label: 'Test Field 6' },
+        ]}
+        errors={SelectField.toFieldErrors(formik.errors).attributefields}
+        touched={formik.touched.attributefields}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         renderError={(key: string) => {
           switch (key) {
             case 'missing':
@@ -74,10 +84,8 @@ const ProductAttributeForm = (props: TProductAttributeFormProps) => {
               return null;
           }
         }}
-        // touched={formik.touched.attributeDescription}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        horizontalConstraint={8}
+        isRequired
+        horizontalConstraint={16}
       />
     </Spacings.Stack>
   );
@@ -92,4 +100,4 @@ const ProductAttributeForm = (props: TProductAttributeFormProps) => {
   });
 };
 
-export default ProductAttributeForm;
+export default AttributeGroupForm;

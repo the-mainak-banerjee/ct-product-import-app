@@ -8,6 +8,8 @@ import Redirects from './components/redirects';
 import SyncJob from './components/SyncJob/SyncJob';
 import JobRuns from './components/AiScraper/JobRuns/JobRuns';
 import ProductAttributes from './components/AiScraper/ProductAttributes/ProductAttributes';
+import AttributeGroups from './components/AiScraper/AttributeGroups/AttributeGroups';
+import AiAttribute from './components/AiScraper/AiAttribute/AiAttribute';
 
 type ApplicationRoutesProps = {
   children?: ReactNode;
@@ -50,6 +52,12 @@ const ApplicationRoutes = (_props: ApplicationRoutesProps) => {
           </Route>
           <Route path={`${match.url}/attributes`}>
             <ProductAttributes />
+          </Route>
+          <Route path={`${match.url}/attribute-groups`}>
+            <AttributeGroups />
+          </Route>
+          <Route path={`${match.url}/ai-attributes`}>
+            <AiAttribute />
           </Route>
         </SideNavigationBar>
       </Route>

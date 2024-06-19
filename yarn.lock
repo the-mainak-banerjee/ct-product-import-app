@@ -2506,6 +2506,26 @@
     "@emotion/react" "^11.10.5"
     prop-types "15.8.1"
 
+"@commercetools-uikit/number-field@^19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/number-field/-/number-field-19.5.0.tgz#67a26d934d9752011bbf386a423214fa2c3b7925"
+  integrity sha512-PCxy+OqrECyfWdFxpfddl5IrlZLIuZxc9TlVL5HZ3ao4yu5J2yYpYlPj2xXco/G1HlPovvIkeLuaPR4scNWuxw==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    "@babel/runtime-corejs3" "^7.20.13"
+    "@commercetools-uikit/constraints" "19.5.0"
+    "@commercetools-uikit/design-system" "19.5.0"
+    "@commercetools-uikit/field-errors" "19.5.0"
+    "@commercetools-uikit/field-label" "19.5.0"
+    "@commercetools-uikit/field-warnings" "19.5.0"
+    "@commercetools-uikit/number-input" "19.5.0"
+    "@commercetools-uikit/spacings-stack" "19.5.0"
+    "@commercetools-uikit/utils" "19.5.0"
+    "@emotion/react" "^11.10.5"
+    "@emotion/styled" "^11.10.5"
+    prop-types "15.8.1"
+    react-intl "^6.3.2"
+
 "@commercetools-uikit/number-input@19.4.0":
   version "19.4.0"
   resolved "https://registry.yarnpkg.com/@commercetools-uikit/number-input/-/number-input-19.4.0.tgz#30831e27e4424fe77362896d57ef844fb3288a75"
@@ -2517,6 +2537,21 @@
     "@commercetools-uikit/design-system" "19.4.0"
     "@commercetools-uikit/input-utils" "19.4.0"
     "@commercetools-uikit/utils" "19.4.0"
+    "@emotion/react" "^11.10.5"
+    "@emotion/styled" "^11.10.5"
+    prop-types "15.8.1"
+
+"@commercetools-uikit/number-input@19.5.0":
+  version "19.5.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/number-input/-/number-input-19.5.0.tgz#4b66886dd3c7ddd889ee3e373829ab3133b8a7a8"
+  integrity sha512-MdSS7tRmuHkxldYc12NvGS+xAD+4bEdIz5xQ8lCuVUmlnP7PSRVhb989rDogHlBo89V+WeZK/wm76E+AHXb77A==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    "@babel/runtime-corejs3" "^7.20.13"
+    "@commercetools-uikit/constraints" "19.5.0"
+    "@commercetools-uikit/design-system" "19.5.0"
+    "@commercetools-uikit/input-utils" "19.5.0"
+    "@commercetools-uikit/utils" "19.5.0"
     "@emotion/react" "^11.10.5"
     "@emotion/styled" "^11.10.5"
     prop-types "15.8.1"
@@ -10731,6 +10766,11 @@ package-json@^8.1.0:
     registry-auth-token "^5.0.1"
     registry-url "^6.0.0"
     semver "^7.3.7"
+
+papaparse@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/papaparse/-/papaparse-5.4.1.tgz#f45c0f871853578bd3a30f92d96fdcfb6ebea127"
+  integrity sha512-HipMsgJkZu8br23pW15uvo6sib6wne/4woLZPlFf3rpDyMe9ywEXUsuD7+6K9PRkJlVT51j/sCOYDKGGS3ZJrw==
 
 param-case@^3.0.4:
   version "3.0.4"

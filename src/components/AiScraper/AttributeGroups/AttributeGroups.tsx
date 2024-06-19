@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import styles from '../JobRuns/JobRuns.module.css';
-import productAttributeStyles from './ProductAttributes.module.css';
+import attributeGroupsStyles from './AttributeGroups.module.css';
 import classNames from 'classnames';
 import {
   getCoreRowModel,
@@ -9,17 +9,17 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import Pagination from '../../Pagination/Pagination';
-import { productAttributesMock } from './ProductAttributes.mock';
+import { attributeGroupsMock } from './AttributeGroups.mock';
 import { BinLinearIcon, EditIcon } from '@commercetools-uikit/icons';
 import { Switch, useHistory, useRouteMatch } from 'react-router';
-import ProductAttributesDetails from './product-attributes-details';
 import { SuspendedRoute } from '@commercetools-frontend/application-shell';
 import PrimaryButton from '@commercetools-uikit/primary-button';
+import AiAttributesDetails from './attribute-groups-details';
 
-export interface IProductAttributes {
+export interface IAttributeGroups {
   id: number;
   name: string;
-  description: string;
+  fields: string[];
 }
 
 interface IProps {
@@ -27,31 +27,27 @@ interface IProps {
     original: {
       id: number;
       name: string;
-      description: string;
+      fields: string[];
     };
   };
 }
 
-const ProductAttributes = () => {
+const AttributeGroups = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const match = useRouteMatch();
   const { push } = useHistory();
-  const [selectedRow, setSelectedRow] = useState<IProductAttributes | null>(
-    null
-  );
+  const [selectedRow, setSelectedRow] = useState<IAttributeGroups | null>(null);
 
   const ActionItems = ({ attributeId }: { attributeId: number }) => {
     const handleEditItem = () => {
-      const item = productAttributesMock.find(
-        (item) => item.id === attributeId
-      );
+      const item = attributeGroupsMock.find((item) => item.id === attributeId);
       if (item) {
         setSelectedRow(item);
       }
       push(`${match.url}/edit`);
     };
     return (
-      <div className={productAttributeStyles.actions}>
+      <div className={attributeGroupsStyles.actions}>
         <button onClick={handleEditItem}>
           <EditIcon />
         </button>
@@ -80,9 +76,15 @@ const ProductAttributes = () => {
       },
     },
     {
-      header: 'Description',
+      header: 'Fileds',
       cell: ({ row }: IProps) => {
-        return <p>{row.original?.description}</p>;
+        return (
+          <p className={attributeGroupsStyles.attributeFields}>
+            {row.original?.fields.map((field) => (
+              <span key={field}>{field}</span>
+            ))}
+          </p>
+        );
       },
     },
 
@@ -94,23 +96,23 @@ const ProductAttributes = () => {
 
   const tableInstance = useReactTable({
     columns: columns,
-    data: productAttributesMock,
+    data: attributeGroupsMock,
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const PER_PAGE = 5;
+  const PER_PAGE = 10;
 
-  const pageCount = Math.ceil(productAttributesMock.length / PER_PAGE);
+  const pageCount = Math.ceil(attributeGroupsMock.length / PER_PAGE);
 
   const offset = currentPage * PER_PAGE;
 
   return (
     <>
       <div>
-        <div className={productAttributeStyles.header}>
-          <h2>Product Attributes</h2>
+        <div className={attributeGroupsStyles.header}>
+          <h2>Attribute Groups</h2>
           <PrimaryButton
-            label="Create Product Attribute"
+            label="Create Attribute Group"
             onClick={() => push(`${match.url}/create`)}
           />
         </div>
@@ -169,17 +171,17 @@ const ProductAttributes = () => {
       </div>
       <Switch>
         <SuspendedRoute path={`${match.url}/create`}>
-          <ProductAttributesDetails onClose={() => push(`${match.url}`)} />
+          <AiAttributesDetails onClose={() => push(`${match.url}`)} />
         </SuspendedRoute>
         <SuspendedRoute path={`${match.url}/edit`}>
-          <ProductAttributesDetails
+          <AiAttributesDetails
             onClose={() => push(`${match.url}`)}
             isEdit={true}
             data={{
               key: `${selectedRow?.id ?? 0}`,
               value: {
                 name: selectedRow?.name ?? '',
-                description: selectedRow?.description ?? '',
+                fields: selectedRow?.fields ?? [],
                 id: selectedRow?.id ?? 0,
               },
             }}
@@ -190,4 +192,4 @@ const ProductAttributes = () => {
   );
 };
 
-export default ProductAttributes;
+export default AttributeGroups;
