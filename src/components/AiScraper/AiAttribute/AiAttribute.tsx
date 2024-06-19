@@ -43,21 +43,29 @@ const AiAttribute = () => {
   const match = useRouteMatch();
   const { push } = useHistory();
   const [selectedRow, setSelectedRow] = useState<IAIAttribute | null>(null);
+  const [aiAttributes, setAiAttributes] = useState(aiAttributeMock);
 
   const ActionItems = ({ attributeId }: { attributeId: number }) => {
     const handleEditItem = () => {
-      const item = aiAttributeMock.find((item) => item.id === attributeId);
+      const item = aiAttributes.find((item) => item.id === attributeId);
       if (item) {
         setSelectedRow(item);
       }
       push(`${match.url}/edit`);
     };
+
+    const handleDeleteItem = () => {
+      setAiAttributes((prevState) =>
+        prevState.filter((item) => item.id !== attributeId)
+      );
+    };
+
     return (
       <div className={attributeGroupsStyles.actions}>
         <button onClick={handleEditItem}>
           <EditIcon />
         </button>
-        <button>
+        <button onClick={handleDeleteItem}>
           <BinLinearIcon />
         </button>
       </div>
@@ -114,13 +122,13 @@ const AiAttribute = () => {
 
   const tableInstance = useReactTable({
     columns: columns,
-    data: aiAttributeMock,
+    data: aiAttributes,
     getCoreRowModel: getCoreRowModel(),
   });
 
   const PER_PAGE = 10;
 
-  const pageCount = Math.ceil(aiAttributeMock.length / PER_PAGE);
+  const pageCount = Math.ceil(aiAttributes.length / PER_PAGE);
 
   const offset = currentPage * PER_PAGE;
 
@@ -185,7 +193,9 @@ const AiAttribute = () => {
               })}
           </tbody>
         </table>
-        <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        {aiAttributes.length > 0 && (
+          <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        )}
       </div>
       <Switch>
         <SuspendedRoute path={`${match.url}/create`}>

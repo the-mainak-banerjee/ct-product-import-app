@@ -39,23 +39,31 @@ const ProductAttributes = () => {
   const [selectedRow, setSelectedRow] = useState<IProductAttributes | null>(
     null
   );
+  const [productAttributes, setProductAttributes] = useState(
+    productAttributesMock
+  );
 
   const ActionItems = ({ attributeId }: { attributeId: number }) => {
     const handleEditItem = () => {
-      const item = productAttributesMock.find(
-        (item) => item.id === attributeId
-      );
+      const item = productAttributes.find((item) => item.id === attributeId);
       if (item) {
         setSelectedRow(item);
       }
       push(`${match.url}/edit`);
     };
+
+    const handleDeleteItem = () => {
+      setProductAttributes((prevState) =>
+        prevState.filter((item) => item.id !== attributeId)
+      );
+    };
+
     return (
       <div className={productAttributeStyles.actions}>
         <button onClick={handleEditItem}>
           <EditIcon />
         </button>
-        <button>
+        <button onClick={handleDeleteItem}>
           <BinLinearIcon />
         </button>
       </div>
@@ -94,13 +102,13 @@ const ProductAttributes = () => {
 
   const tableInstance = useReactTable({
     columns: columns,
-    data: productAttributesMock,
+    data: productAttributes,
     getCoreRowModel: getCoreRowModel(),
   });
 
   const PER_PAGE = 5;
 
-  const pageCount = Math.ceil(productAttributesMock.length / PER_PAGE);
+  const pageCount = Math.ceil(productAttributes.length / PER_PAGE);
 
   const offset = currentPage * PER_PAGE;
 
@@ -165,7 +173,9 @@ const ProductAttributes = () => {
               })}
           </tbody>
         </table>
-        <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        {productAttributes.length > 0 && (
+          <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        )}
       </div>
       <Switch>
         <SuspendedRoute path={`${match.url}/create`}>
