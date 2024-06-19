@@ -37,21 +37,29 @@ const AttributeGroups = () => {
   const match = useRouteMatch();
   const { push } = useHistory();
   const [selectedRow, setSelectedRow] = useState<IAttributeGroups | null>(null);
+  const [attributeGroups, setAttributeGroups] = useState(attributeGroupsMock);
 
   const ActionItems = ({ attributeId }: { attributeId: number }) => {
     const handleEditItem = () => {
-      const item = attributeGroupsMock.find((item) => item.id === attributeId);
+      const item = attributeGroups.find((item) => item.id === attributeId);
       if (item) {
         setSelectedRow(item);
       }
       push(`${match.url}/edit`);
     };
+
+    const handleDeleteItem = () => {
+      setAttributeGroups((prevState) =>
+        prevState.filter((item) => item.id !== attributeId)
+      );
+    };
+
     return (
       <div className={attributeGroupsStyles.actions}>
         <button onClick={handleEditItem}>
           <EditIcon />
         </button>
-        <button>
+        <button onClick={handleDeleteItem}>
           <BinLinearIcon />
         </button>
       </div>
@@ -96,13 +104,13 @@ const AttributeGroups = () => {
 
   const tableInstance = useReactTable({
     columns: columns,
-    data: attributeGroupsMock,
+    data: attributeGroups,
     getCoreRowModel: getCoreRowModel(),
   });
 
   const PER_PAGE = 10;
 
-  const pageCount = Math.ceil(attributeGroupsMock.length / PER_PAGE);
+  const pageCount = Math.ceil(attributeGroups.length / PER_PAGE);
 
   const offset = currentPage * PER_PAGE;
 
@@ -167,7 +175,9 @@ const AttributeGroups = () => {
               })}
           </tbody>
         </table>
-        <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        {attributeGroups.length > 0 && (
+          <Pagination pageCount={pageCount} setCurrentPage={setCurrentPage} />
+        )}
       </div>
       <Switch>
         <SuspendedRoute path={`${match.url}/create`}>
